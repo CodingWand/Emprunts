@@ -17,4 +17,11 @@ class BorrowController extends AbstractController
             'controller_name' => 'BorrowController',
         ]);
     }
+
+    /**
+     * @Route ("/", name="home")
+    */
+    public function home() {
+        return $this->render('borrow/home.html.twig');
+    }
 }
