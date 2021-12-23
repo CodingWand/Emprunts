@@ -30,3 +30,7 @@ body {
     font-size: 8pt;
     text-align: center;
 }
+
+#app-notifs{
+    display: none;
+}
