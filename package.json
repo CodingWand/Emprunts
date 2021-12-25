@@ -3,10 +3,10 @@
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.7.0",
         "core-js": "^3.0.0",
-        "node-sass": "^7.0.0",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "^7.0.1",
         "stimulus": "^2.0.0",
+        "webpack": "^5.65.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -26,6 +26,6 @@
         "jquery": "^3.6.0",
         "node-waves": "^0.7.6",
         "popper.js": "^1.16.1",
-        "webpack": "^5.65.0"
+        "sass": "^1.45.1"
     }
 }
