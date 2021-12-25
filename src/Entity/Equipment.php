@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=EquipmentRepository::class)
+ * @UniqueEntity ("id", "uid")
  */
 class Equipment
 {
