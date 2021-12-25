@@ -23,19 +23,16 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Username
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Password
      */
     private $password;
 

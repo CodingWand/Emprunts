@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\EquipmentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass=EquipmentRepository::class)
- * @UniqueEntity ("id", "uid")
+ * @UniqueEntity ("id", "uid", "name")
  */
 class Equipment
 {
