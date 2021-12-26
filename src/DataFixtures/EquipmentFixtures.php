@@ -12,7 +12,8 @@ class EquipmentFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        $ordis = new Equipment();
+        /*
+         * $ordis = new Equipment();
         $ordis->setName("Ordinateurs");
         $ordis->setQuantity(10);
         $ordis->setDescription("Mac ou Windows, ou même un ordi sous linux.");
@@ -29,6 +30,7 @@ class EquipmentFixtures extends Fixture
         $chargeurs->setQuantity(20);
         $chargeurs->setName("Chargeurs de téléphone");
         $manager->persist($chargeurs);
+         */
 
         $manager->flush();
     }

@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Borrowing;
+use App\Entity\Equipment;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -10,8 +12,7 @@ class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        //Utilisateurs
         $user1 = new User();
         $user1->setUsername("LeBertNoel");
         $user1->setEmail("leBertNoel@pole-nord.fr");
@@ -41,6 +42,44 @@ class UserFixtures extends Fixture
         $user3->setRoles(["membre", "admin", "prêteur"]);
         $user3->setUid("31415161");
         $manager->persist($user3);
+
+        //Equipement
+        $ordis = new Equipment();
+        $ordis->setName("Ordinateurs");
+        $ordis->setQuantity(10);
+        $ordis->setDescription("Mac ou Windows, ou même un ordi sous linux.");
+        $ordis->setAvailableStock(7);
+        $ordis->setAllowedDays(7);
+        $ordis->setUid("Turing");
+        $manager->persist($ordis);
+
+        $chargeurs = new Equipment();
+        $chargeurs->setUid("OnEstBranché");
+        $chargeurs->setAllowedDays(1);
+        $chargeurs->setAvailableStock(9);
+        $chargeurs->setDescription("De quoi charger tous les types de téléphones");
+        $chargeurs->setQuantity(20);
+        $chargeurs->setName("Chargeurs de téléphone");
+        $manager->persist($chargeurs);
+
+        //Relations
+        $emprunt1 = new Borrowing();
+        $emprunt1->setEquipment($chargeurs)
+                 ->setLendBy($user1)
+                 ->setBorrowedBy($user2)
+                 ->setStartedOn(new \DateTime())
+                 ->setEndedOn(new \DateTime())
+                 ->setAllowedDays(1);
+        $manager->persist($emprunt1);
+
+        $emprunt2 = new Borrowing();
+        $emprunt2->setEquipment($ordis)
+            ->setLendBy($user3)
+            ->setBorrowedBy($user2)
+            ->setStartedOn(new \DateTime())
+            ->setEndedOn(new \DateTime())
+            ->setAllowedDays(2);
+        $manager->persist($emprunt2);
 
         $manager->flush();
     }
