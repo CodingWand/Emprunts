@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -55,6 +57,22 @@ class User
      * @ORM\Column(type="array")
      */
     private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity=Borrowing::class, mappedBy="lend_by", orphanRemoval=true)
+     */
+    private $lended;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Borrowing::class, mappedBy="borrowed_by")
+     */
+    private $borrowed;
+
+    public function __construct()
+    {
+        $this->lended = new ArrayCollection();
+        $this->borrowed = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -141,6 +159,66 @@ class User
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Borrowing[]
+     */
+    public function getLended(): Collection
+    {
+        return $this->lended;
+    }
+
+    public function addLended(Borrowing $lended): self
+    {
+        if (!$this->lended->contains($lended)) {
+            $this->lended[] = $lended;
+            $lended->setLendBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLended(Borrowing $lended): self
+    {
+        if ($this->lended->removeElement($lended)) {
+            // set the owning side to null (unless already changed)
+            if ($lended->getLendBy() === $this) {
+                $lended->setLendBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Borrowing[]
+     */
+    public function getBorrowed(): Collection
+    {
+        return $this->borrowed;
+    }
+
+    public function addBorrowed(Borrowing $borrowed): self
+    {
+        if (!$this->borrowed->contains($borrowed)) {
+            $this->borrowed[] = $borrowed;
+            $borrowed->setBorrowedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBorrowed(Borrowing $borrowed): self
+    {
+        if ($this->borrowed->removeElement($borrowed)) {
+            // set the owning side to null (unless already changed)
+            if ($borrowed->getBorrowedBy() === $this) {
+                $borrowed->setBorrowedBy(null);
+            }
+        }
 
         return $this;
     }

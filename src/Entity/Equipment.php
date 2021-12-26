@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipmentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -49,6 +51,16 @@ class Equipment
      * @ORM\Column(type="integer")
      */
     private $allowedDays;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Borrowing::class, mappedBy="equipment")
+     */
+    private $borrowed;
+
+    public function __construct()
+    {
+        $this->borrowed = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,6 +135,36 @@ class Equipment
     public function setAllowedDays(int $allowedDays): self
     {
         $this->allowedDays = $allowedDays;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Borrowing[]
+     */
+    public function getBorrowed(): Collection
+    {
+        return $this->borrowed;
+    }
+
+    public function addBorrowed(Borrowing $borrowed): self
+    {
+        if (!$this->borrowed->contains($borrowed)) {
+            $this->borrowed[] = $borrowed;
+            $borrowed->setEquipment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBorrowed(Borrowing $borrowed): self
+    {
+        if ($this->borrowed->removeElement($borrowed)) {
+            // set the owning side to null (unless already changed)
+            if ($borrowed->getEquipment() === $this) {
+                $borrowed->setEquipment(null);
+            }
+        }
 
         return $this;
     }

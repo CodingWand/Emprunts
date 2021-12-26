@@ -5,11 +5,8 @@ namespace App\Entity;
 use App\Repository\BorrowingRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 /**
  * @ORM\Entity(repositoryClass=BorrowingRepository::class)
- * @UniqueEntity ("id")
  */
 class Borrowing
 {
@@ -19,6 +16,24 @@ class Borrowing
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="lended")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lend_by;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="borrowed")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $borrowed_by;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Equipment::class, inversedBy="borrowed")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $equipment;
 
     /**
      * @ORM\Column(type="datetime")
@@ -33,34 +48,52 @@ class Borrowing
     /**
      * @ORM\Column(type="integer")
      */
-    private $allowad_days;
+    private $allowed_days;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $remarks;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $lendBy;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $borrowed_by;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Equipment::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $equipment;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLendBy(): ?User
+    {
+        return $this->lend_by;
+    }
+
+    public function setLendBy(?User $lend_by): self
+    {
+        $this->lend_by = $lend_by;
+
+        return $this;
+    }
+
+    public function getBorrowedBy(): ?User
+    {
+        return $this->borrowed_by;
+    }
+
+    public function setBorrowedBy(?User $borrowed_by): self
+    {
+        $this->borrowed_by = $borrowed_by;
+
+        return $this;
+    }
+
+    public function getEquipment(): ?Equipment
+    {
+        return $this->equipment;
+    }
+
+    public function setEquipment(?Equipment $equipment): self
+    {
+        $this->equipment = $equipment;
+
+        return $this;
     }
 
     public function getStartedOn(): ?\DateTimeInterface
@@ -87,14 +120,14 @@ class Borrowing
         return $this;
     }
 
-    public function getAllowadDays(): ?int
+    public function getAllowedDays(): ?int
     {
-        return $this->allowad_days;
+        return $this->allowed_days;
     }
 
-    public function setAllowadDays(int $allowad_days): self
+    public function setAllowedDays(int $allowed_days): self
     {
-        $this->allowad_days = $allowad_days;
+        $this->allowed_days = $allowed_days;
 
         return $this;
     }
@@ -107,42 +140,6 @@ class Borrowing
     public function setRemarks(?string $remarks): self
     {
         $this->remarks = $remarks;
-
-        return $this;
-    }
-
-    public function getLendBy(): ?User
-    {
-        return $this->lendBy;
-    }
-
-    public function setLendBy(?User $lendBy): self
-    {
-        $this->lendBy = $lendBy;
-
-        return $this;
-    }
-
-    public function getBorrowedBy(): ?User
-    {
-        return $this->borrowed_by;
-    }
-
-    public function setBorrowedBy(?User $borrowed_by): self
-    {
-        $this->borrowed_by = $borrowed_by;
-
-        return $this;
-    }
-
-    public function getEquipment(): ?Equipment
-    {
-        return $this->equipment;
-    }
-
-    public function setEquipment(?Equipment $equipment): self
-    {
-        $this->equipment = $equipment;
 
         return $this;
     }
