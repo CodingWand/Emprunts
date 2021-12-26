@@ -45,7 +45,7 @@ class UserFixtures extends Fixture
 
         //Equipement
         $ordis = new Equipment();
-        $ordis->setName("Ordinateurs");
+        $ordis->setName("Ordinateur");
         $ordis->setQuantity(10);
         $ordis->setDescription("Mac ou Windows, ou même un ordi sous linux.");
         $ordis->setAvailableStock(7);
@@ -59,7 +59,7 @@ class UserFixtures extends Fixture
         $chargeurs->setAvailableStock(9);
         $chargeurs->setDescription("De quoi charger tous les types de téléphones");
         $chargeurs->setQuantity(20);
-        $chargeurs->setName("Chargeurs de téléphone");
+        $chargeurs->setName("Chargeur de téléphone");
         $manager->persist($chargeurs);
 
         //Relations
@@ -68,7 +68,7 @@ class UserFixtures extends Fixture
                  ->setLendBy($user1)
                  ->setBorrowedBy($user2)
                  ->setStartedOn(new \DateTime())
-                 ->setEndedOn(new \DateTime())
+                 ->setEndedOn(\DateTime::createFromFormat("d/m/Y", "28/12/2021"))
                  ->setAllowedDays(1);
         $manager->persist($emprunt1);
 
@@ -76,7 +76,7 @@ class UserFixtures extends Fixture
         $emprunt2->setEquipment($ordis)
             ->setLendBy($user3)
             ->setBorrowedBy($user2)
-            ->setStartedOn(new \DateTime())
+            ->setStartedOn(\DateTime::createFromFormat("d/m/Y", "25/12/2021"))
             ->setEndedOn(new \DateTime())
             ->setAllowedDays(2);
         $manager->persist($emprunt2);

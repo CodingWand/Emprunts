@@ -2,7 +2,20 @@
 
 {% block titre_page %}Emprunts{% endblock %}
 {% block content %}
-    <h1 style="color: #3F51B5">Site des emprunts</h1>
-    <p><strong>Rends ce que t'as emprunté et récupère toujours ce que tu prêtes : empruntes (ou prêtes) ici !</strong></p>
+    <h1 style="color: #3F51B5">Salut {{ user.firstName }} !</h1>
     <hr>
+
+    <p>Tu as emprunté :</p>
+    {% for borrowing in user.borrowed %}
+        <section>
+            <h2>{{ borrowing.equipment.name }}</h2>
+            <p>A rendre le {{ borrowing.endedOn | date("d/m/Y") }}</p>
+            <hr />
+            {% if borrowing.remarks != NULL %}
+                <p>borrowing.remarks</p>
+            {% endif %}
+        </section>
+    {% endfor %}
+
+    <button>Emprunter</button>
 {% endblock %}

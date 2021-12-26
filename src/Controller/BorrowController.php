@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,6 +23,8 @@ class BorrowController extends AbstractController
      * @Route ("/", name="home")
     */
     public function home() {
-        return $this->render('borrow/home.html.twig');
+        return $this->render('borrow/home.html.twig', [
+            "user" => $this->getDoctrine()->getRepository(User::class)->findOneByUsername("MrLambda")
+        ]);
     }
 }
