@@ -69,6 +69,7 @@ class UserFixtures extends Fixture
                  ->setBorrowedBy($user2)
                  ->setStartedOn(new \DateTime())
                  ->setEndedOn(\DateTime::createFromFormat("d/m/Y", "28/12/2021"))
+                 ->setRemarks("Chargeur USB-C")
                  ->setAllowedDays(1);
         $manager->persist($emprunt1);
 
