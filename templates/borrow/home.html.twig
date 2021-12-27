@@ -18,7 +18,9 @@
                     </div>
                     <div class="body">
                         <p>Tu peux avoir {{ borrowing.allowedDays }} jours de retard.</p>
-                        <button type="button" class="btn bg-deep-purple">Rendre</button>
+                        <button type="button" class="btn bg-deep-purple">
+                            <a href="#" style="color: white; text-decoration: none">Rendre</a>
+                        </button>
                     </div>
                     <div class="card-footer container">
                         {% if borrowing.remarks != NULL %}
