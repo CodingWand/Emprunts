@@ -10,6 +10,10 @@ use Doctrine\Persistence\ObjectManager;
 
 class UserFixtures extends Fixture
 {
+    public const LEBERTNOEL = "leBertNoel";
+    public const MRLAMBDA = "mrLambda";
+    public const USERNAME = "username";
+
     public function load(ObjectManager $manager): void
     {
         //Utilisateurs
@@ -22,6 +26,7 @@ class UserFixtures extends Fixture
         $user1->setRoles(["membre", "prêteur"]);
         $user1->setUid("12365678");
         $manager->persist($user1);
+        $this->addReference(self::LEBERTNOEL, $user1);
 
         $user2 = new User();
         $user2->setUsername("MrLambda");
@@ -32,6 +37,7 @@ class UserFixtures extends Fixture
         $user2->setRoles(["membre"]);
         $user2->setUid("91011121");
         $manager->persist($user2);
+        $this->addReference(self::MRLAMBDA, $user2);
 
         $user3 = new User();
         $user3->setUsername("Username");
@@ -42,45 +48,7 @@ class UserFixtures extends Fixture
         $user3->setRoles(["membre", "admin", "prêteur"]);
         $user3->setUid("31415161");
         $manager->persist($user3);
-
-        //Equipement
-        $ordis = new Equipment();
-        $ordis->setName("Ordinateur");
-        $ordis->setQuantity(10);
-        $ordis->setDescription("Mac ou Windows, ou même un ordi sous linux.");
-        $ordis->setAvailableStock(7);
-        $ordis->setAllowedDays(7);
-        $ordis->setUid("Turing");
-        $manager->persist($ordis);
-
-        $chargeurs = new Equipment();
-        $chargeurs->setUid("OnEstBranché");
-        $chargeurs->setAllowedDays(1);
-        $chargeurs->setAvailableStock(9);
-        $chargeurs->setDescription("De quoi charger tous les types de téléphones");
-        $chargeurs->setQuantity(20);
-        $chargeurs->setName("Chargeur de téléphone");
-        $manager->persist($chargeurs);
-
-        //Relations
-        $emprunt1 = new Borrowing();
-        $emprunt1->setEquipment($chargeurs)
-                 ->setLendBy($user1)
-                 ->setBorrowedBy($user2)
-                 ->setStartedOn(new \DateTime())
-                 ->setEndedOn(\DateTime::createFromFormat("d/m/Y", "28/12/2021"))
-                 ->setRemarks("Chargeur USB-C")
-                 ->setAllowedDays(1);
-        $manager->persist($emprunt1);
-
-        $emprunt2 = new Borrowing();
-        $emprunt2->setEquipment($ordis)
-            ->setLendBy($user3)
-            ->setBorrowedBy($user2)
-            ->setStartedOn(\DateTime::createFromFormat("d/m/Y", "25/12/2021"))
-            ->setEndedOn(new \DateTime())
-            ->setAllowedDays(2);
-        $manager->persist($emprunt2);
+        $this->addReference(self::USERNAME, $user3);
 
         $manager->flush();
     }
