@@ -18,8 +18,11 @@
                     </div>
                     <div class="body">
                         <p>Tu peux avoir {{ borrowing.allowedDays }} jours de retard.</p>
+                        <button type="button" class="btn bg-deep-purple">Rendre</button>
+                    </div>
+                    <div class="card-footer container">
                         {% if borrowing.remarks != NULL %}
-                            <span style="color: darkgray">Remarque(s) : {{ borrowing.remarks }}</span>
+                            <span style="color: darkgray;">Remarque(s) : {{ borrowing.remarks }}</span>
                         {% endif %}
                     </div>
                 </section>
@@ -27,5 +30,5 @@
         {% endfor %}
     </div>
 
-    <button type="button" class="btn" style="background-color: #3F51B5; color: white">Emprunter</button>
+    <button type="button" class="btn bg-deep-purple">Emprunter</button>
 {% endblock %}
