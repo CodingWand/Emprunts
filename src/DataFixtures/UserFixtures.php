@@ -7,6 +7,7 @@ use App\Entity\Equipment;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker;
 
 class UserFixtures extends Fixture
 {
@@ -16,6 +17,8 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Faker\Factory::create("fr_FR");
+
         //Utilisateurs
         $user1 = new User();
         $user1->setUsername("LeBertNoel");
@@ -24,7 +27,7 @@ class UserFixtures extends Fixture
         $user1->setFirstName("Nicolas");
         $user1->setLastName("Bert");
         $user1->setRoles(["membre", "prêteur"]);
-        $user1->setUid("12365678");
+        $user1->setUid($faker->uuid());
         $manager->persist($user1);
         $this->addReference(self::LEBERTNOEL, $user1);
 
@@ -35,7 +38,7 @@ class UserFixtures extends Fixture
         $user2->setFirstName("John");
         $user2->setLastName("Doe");
         $user2->setRoles(["membre"]);
-        $user2->setUid("91011121");
+        $user2->setUid($faker->uuid());
         $manager->persist($user2);
         $this->addReference(self::MRLAMBDA, $user2);
 
@@ -46,9 +49,22 @@ class UserFixtures extends Fixture
         $user3->setFirstName("Assane");
         $user3->setLastName("Diouf");
         $user3->setRoles(["membre", "admin", "prêteur"]);
-        $user3->setUid("31415161");
+        $user3->setUid($faker->uuid());
         $manager->persist($user3);
         $this->addReference(self::USERNAME, $user3);
+
+        for($i = 0; $i < 10; $i++) {
+            $user = new User();
+            $user->setUid($faker->uuid());
+            $user->setEmail($faker->email());
+            $user->setPassword($faker->words(3, true));
+            $user->setUsername($faker->word());
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->lastName())
+            ->setRoles($faker->words());
+
+            $manager->persist($user);
+        }
 
         $manager->flush();
     }

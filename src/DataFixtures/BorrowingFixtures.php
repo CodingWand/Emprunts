@@ -13,6 +13,7 @@ class BorrowingFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
+
         $chargeurs = $this->getReference(EquipmentFixtures::CHARGEUR);
         $ordis = $this->getReference(EquipmentFixtures::ORDI);
 
