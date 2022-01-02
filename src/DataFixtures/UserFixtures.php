@@ -53,7 +53,7 @@ class UserFixtures extends Fixture
         $manager->persist($user3);
         $this->addReference(self::USERNAME, $user3);
 
-        for($i = 0; $i < 10; $i++) {
+        for($i = 0; $i < 100; $i++) {
             $user = new User();
             $user->setUid($faker->uuid());
             $user->setEmail($faker->email());
