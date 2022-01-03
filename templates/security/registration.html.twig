@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block titre_page %}Emprunts{% endblock %}
+
 {% block content %}
 
     {{ form_start(registrationForm) }}
 
     {{ form_widget(registrationForm) }}
+
+    <button type="submit" class="btn btm-primary">S'inscrire</button>
 
     {{ form_end(registrationForm) }}
 

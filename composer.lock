@@ -3368,16 +3368,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v4.4.34",
+            "version": "v4.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "762f9c74d720e3c78249d67f2ee98bf198489de2"
+                "reference": "384c0be0f33d2b166b2188194aaf57b0f1c54f77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/762f9c74d720e3c78249d67f2ee98bf198489de2",
-                "reference": "762f9c74d720e3c78249d67f2ee98bf198489de2",
+                "url": "https://api.github.com/repos/symfony/form/zipball/384c0be0f33d2b166b2188194aaf57b0f1c54f77",
+                "reference": "384c0be0f33d2b166b2188194aaf57b0f1c54f77",
                 "shasum": ""
             },
             "require": {
@@ -3459,7 +3459,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-14T08:15:13+00:00"
+            "time": "2021-12-13T12:41:27+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -6427,16 +6427,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v4.4.35",
+            "version": "v4.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "629f420d8350634fd8ed686d4472c1f10044b265"
+                "reference": "dba84cf8f0f26bdf76057235b3cdc881c476a282"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/629f420d8350634fd8ed686d4472c1f10044b265",
-                "reference": "629f420d8350634fd8ed686d4472c1f10044b265",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/dba84cf8f0f26bdf76057235b3cdc881c476a282",
+                "reference": "dba84cf8f0f26bdf76057235b3cdc881c476a282",
                 "shasum": ""
             },
             "require": {
@@ -6447,7 +6447,7 @@
                 "symfony/translation-contracts": "^1.1|^2"
             },
             "conflict": {
-                "doctrine/lexer": "<1.0.2",
+                "doctrine/lexer": "<1.1",
                 "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
                 "symfony/dependency-injection": "<3.4",
                 "symfony/http-kernel": "<4.4",
@@ -6526,7 +6526,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-22T21:43:32+00:00"
+            "time": "2021-12-20T09:31:34+00:00"
         },
         {
             "name": "symfony/var-dumper",
