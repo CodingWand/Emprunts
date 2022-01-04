@@ -8,13 +8,31 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity("id", "username", "email", "password", "uid")
+ * @UniqueEntity(
+ *     fields={"id", "username", "email", "password", "uid"}
+ * )
+ * @UniqueEntity(
+ *     fields={"id"}
+ * )
+ * @UniqueEntity(
+ *     fields={"username"}
+ * )
+ * @UniqueEntity(
+ *     fields={"email"}
+ * )
+ * @UniqueEntity(
+ *     fields={"password"}
+ * )
+ * @UniqueEntity(
+ *     fields={"uid"}
+ * )
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -30,13 +48,23 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min = 8,
+     *     minMessage = "Your password should be at least 8 characters long."
+     * )
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="This value should be equal to the password")
+    */
+    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -221,5 +249,15 @@ class User
         }
 
         return $this;
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }
