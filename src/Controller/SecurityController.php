@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/inscription", name="security_registration")
+     * @Route("/login", name="security_registration")
     */
     public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
         $user = new User();
@@ -33,7 +33,9 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("home", [
+                "user" => $user
+            ]);
         }
 
         return $this->render('security/registration.html.twig', [
@@ -42,7 +44,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/connexion", name="security_login")
+     * @Route("/connection", name="security_login")
      */
     public function login(AuthenticationUtils $authenticationUtils) {
         $error = $authenticationUtils->getLastAuthenticationError();

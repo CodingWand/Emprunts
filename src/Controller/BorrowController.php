@@ -22,6 +22,7 @@ class BorrowController extends AbstractController
 
     /**
      * @Route ("/", name="home")
+     * @Security("is_granted('ROLE_USER')")
     */
     public function home() {
         return $this->render('borrow/home.html.twig', [
