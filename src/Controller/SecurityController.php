@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
@@ -32,11 +33,27 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            $this->redirectToRoute("borrow");
+            return $this->redirectToRoute("home");
         }
 
         return $this->render('security/registration.html.twig', [
             'registrationForm' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/connexion", name="security_login")
+     */
+    public function login(AuthenticationUtils $authenticationUtils) {
+        $error = $authenticationUtils->getLastAuthenticationError();
+        return $this->render("security/login.html.twig", [
+            "error" => $error
+        ]);
+    }
+
+    /**
+     * @Route("/logout", name="security_logout")
+     */
+    public function logout() {
     }
 }

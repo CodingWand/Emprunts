@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Borrowing;
 use App\DataFixtures\EquipmentFixtures;
 use App\DataFixtures\UserFixtures;
+use App\Entity\Borrowing;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -17,9 +17,9 @@ class BorrowingFixtures extends Fixture implements DependentFixtureInterface
         $chargeurs = $this->getReference(EquipmentFixtures::CHARGEUR);
         $ordis = $this->getReference(EquipmentFixtures::ORDI);
 
-        $user1 = $this->getReference(UserFixtures::LEBERTNOEL);
-        $user2 = $this->getReference(UserFixtures::MRLAMBDA);
-        $user3 = $this->getReference(UserFixtures::USERNAME);
+        $user1 = $this->getReference(UserFixtures::USER0);
+        $user2 = $this->getReference(UserFixtures::USER1);
+        $user3 = $this->getReference(UserFixtures::USER2);
 
         $emprunt1 = new Borrowing();
         $emprunt1->setEquipment($chargeurs)
@@ -43,7 +43,7 @@ class BorrowingFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [UserFixtures::class, EquipmentFixtures::class];
     }

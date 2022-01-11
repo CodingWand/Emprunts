@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class BorrowController extends AbstractController
 {
@@ -20,11 +21,11 @@ class BorrowController extends AbstractController
     }
 
     /**
-     * @Route ("/", name="borrow_home")
+     * @Route ("/", name="home")
     */
     public function home() {
         return $this->render('borrow/home.html.twig', [
-            "user" => $this->getDoctrine()->getRepository(User::class)->findOneByUsername("MrLambda")
+            "user" => $this->getUser()
         ]);
     }
 }
