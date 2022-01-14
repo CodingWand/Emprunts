@@ -2,19 +2,29 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class UserController extends AbstractController
 {
     /**
-     * @Route("/login", name="user_login")
+     * @Route("/login_my", name="user_login")
      */
-    public function index(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session, EventDispatcherInterface $dispatcher, ObjectManager $manager)
+    public function index(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session, EventDispatcherInterface $dispatcher, EntityManagerInterface $manager)
     {
         if($this->isGranted('ROLE_USER')){
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home', [
+                "user" => $this->getUser()
+            ]);
         }
 
 
@@ -67,7 +77,7 @@ class UserController extends AbstractController
             }
 
             // Redirection vers l'accueil
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('home');
         }
 
     }
