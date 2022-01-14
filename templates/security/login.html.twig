@@ -11,14 +11,15 @@
 
     <form action="{{ path("security_login") }}" method="post">
         <div class="form-group">
-            <input class="form-control" placeholder="Adresse email" required name="_username" type="text"/>
+            <input class="form-control" placeholder="Nom d'utilisateur" required name="_username" type="text"/>
         </div>
         <div class="form-group">
             <input class="form-control" type="password" placeholder="Mot de passe" required name="_password"/>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">Se connecter</button><br />
-            <span>Tu n'as pas de compte ? Inscris-toi <a href="{{ path('security_registration') }}">ici</a></span>
+            <a href="{{ path("user_login") }}"><button type="button" class="btn btn-secondary" style="margin-bottom: 10px;" >Se connecter avec MyCentraleAssos</button><br /></a>
+            <span>Tu n'as pas de compte ? Inscris-toi <a href="{{ path('security_registration') }}">ici</a>.</span>
         </div>
     </form>
 {% endblock %}

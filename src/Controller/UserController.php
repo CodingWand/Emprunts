@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/login_my", name="user_login")
+     * @Route("/loginMy", name="user_login")
      */
     public function index(Request $request, TokenStorageInterface $tokenStorage, SessionInterface $session, EventDispatcherInterface $dispatcher, EntityManagerInterface $manager)
     {

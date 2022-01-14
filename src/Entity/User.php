@@ -14,9 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
- *     fields={"id", "username", "email", "password", "uid"}
- * )
- * @UniqueEntity(
  *     fields={"id"}
  * )
  * @UniqueEntity(
