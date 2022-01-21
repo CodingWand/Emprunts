@@ -60,6 +60,8 @@ class UserController extends AbstractController
                     $user->setLastName($data['nom']);
                     $user->setFirstName($data['prenom']);
 
+                    $user->setRoles(['ROLE_USER']);
+
 
                     $manager->persist($user);
                     $manager->flush();
