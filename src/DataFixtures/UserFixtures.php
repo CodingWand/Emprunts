@@ -31,11 +31,12 @@ class UserFixtures extends Fixture
         //Utilisateurs
 
         for($i = 0; $i < 100; $i++) {
+            $username = $faker->userName();
             $user = new User();
             $user->setUid($faker->uuid());
             $user->setEmail($faker->email());
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $faker->word()));
-            $user->setUsername($faker->word());
+            $user->setPassword($this->passwordEncoder->encodePassword($user, $username));
+            $user->setUsername($username);
             $user->setFirstName($faker->firstName());
             $user->setLastName($faker->lastName())
             ->setRoles(["ROLE_USER"]);

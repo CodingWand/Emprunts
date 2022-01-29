@@ -2,36 +2,66 @@
 
 {% block titre_page %}Emprunts{% endblock %}
 
-{% block content %}
-    <h1 style="color: #3F51B5">Salut {{ user.firstName }} !</h1>
-    <hr />
+{% block page_css %}
+    <link rel="stylesheet" href="{{ asset('build/m-styles.css') }}" />
+{% endblock %}
 
-    <p>Tu as emprunté :</p>
-    <div class="row">
-        {% for borrowing in user.borrowed %}
-            <div class="col col-sm-6 col-md-6 col-lg-4">
-                <section class="card">
-                    <div class="header bg-deep-purple">
-                        <h2>
-                            {{ borrowing.equipment.name }}
-                            <small>A rendre le {{ borrowing.endedOn | date("d/m/Y") }}</small>
-                        </h2>
+{% block content %}
+
+    <section id="m-section-titre" class="d-lg-flex d-lg-column align-items-end">
+        <h2>Salut</h2>
+        <h1>{{ user.firstName }}</h1>
+    </section>
+
+    <section id="m-section-dashboard">
+    </section>
+
+    <section id="m-section-emprunts">
+        <h1>Tu as emprunté :</h1>
+        <div id="carouselEmpruntsControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="http://placehold.it/350x150" class="d-block w-100" alt="...">
+                </div>
+                {% for borrowing in user.borrowed %}
+                    <div class="carousel-item">
+                        <section class="card my-borrow-card">
+                            <div class="header bg-deep-purple">
+                                <h2>
+                                    {{ borrowing.equipment.name }}
+                                    <small>A rendre le {{ borrowing.endedOn | date("d/m/Y") }}</small>
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <p>Tu peux avoir {{ borrowing.allowedDays }} jours de retard.</p>
+                                <button type="button" class="btn bg-deep-purple">
+                                    <a href="#" style="color: white; text-decoration: none">Rendre</a>
+                                </button>
+                            </div>
+                            <div class="card-footer container">
+                                {% if borrowing.remarks != NULL %}
+                                    <span style="color: darkgray;">Remarque(s) : {{ borrowing.remarks }}</span>
+                                {% endif %}
+                            </div>
+                        </section>
                     </div>
-                    <div class="body">
-                        <p>Tu peux avoir {{ borrowing.allowedDays }} jours de retard.</p>
-                        <button type="button" class="btn bg-deep-purple">
-                            <a href="#" style="color: white; text-decoration: none">Rendre</a>
-                        </button>
-                    </div>
-                    <div class="card-footer container">
-                        {% if borrowing.remarks != NULL %}
-                            <span style="color: darkgray;">Remarque(s) : {{ borrowing.remarks }}</span>
-                        {% endif %}
-                    </div>
-                </section>
+                {% endfor %}
             </div>
-        {% endfor %}
-    </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselEmpruntsControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselEmpruntsControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="m-section-pret">
+        <h1>Tu as prêté</h1>
+        <span class="m-sub">Quel bon samaritain...</span>
+    </section>
 
     <button type="button" class="btn bg-deep-purple">Emprunter</button>
 {% endblock %}

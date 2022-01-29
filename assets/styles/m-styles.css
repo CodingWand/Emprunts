@@ -1,0 +1,30 @@
+h1 {
+    font-size: 70px;
+    color : #9F7DE1;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+.m-sub {
+    color: #9F7DE1;
+}
+
+.my-borrow-card {
+    width: 50%;
+    border: solid 5px;
+}
+
+#m-section-titre {
+    text-align: right;
+    /*background-image: url("https://t2.ev.ltmcdn.com/fr/posts/4/6/0/peut_on_avoir_une_loutre_comme_animal_de_compagnie_64_orig.jpg");*/
+}
+
+#m-section-emprunts {
+    background-color: #9F7DE1;
+}
+
+#m-section-emprunts h1 {
+    color: white;
+}
