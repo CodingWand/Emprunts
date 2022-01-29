@@ -17,12 +17,24 @@ h2 {
 }
 
 #m-section-titre {
+    padding: 10% 10%;
+    height: 400px;
     text-align: right;
-    /*background-image: url("https://t2.ev.ltmcdn.com/fr/posts/4/6/0/peut_on_avoir_une_loutre_comme_animal_de_compagnie_64_orig.jpg");*/
+    background-image: url("https://t2.ev.ltmcdn.com/fr/posts/4/6/0/peut_on_avoir_une_loutre_comme_animal_de_compagnie_64_orig.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#m-section-titre h2 {
+    color: white;
 }
 
 #m-section-emprunts {
+    padding: 3% 15%;
+    width: 100%;
     background-color: #9F7DE1;
+    box-shadow: 10px 10px 5px #9F7DE166;
 }
 
 #m-section-emprunts h1 {
