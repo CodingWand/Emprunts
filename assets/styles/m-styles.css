@@ -16,9 +16,19 @@ h2 {
     border: solid 5px;
 }
 
+.my-anchor-card {
+    color: #D3BCFF;
+    border: solid 5px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.my-anchor-card-header {
+    background-color: #D3BCFF;
+}
+
 #m-section-titre {
-    padding: 10% 10%;
-    height: 400px;
+    padding: 10%;
+    height: 300px;
     text-align: right;
     background-image: url("https://t2.ev.ltmcdn.com/fr/posts/4/6/0/peut_on_avoir_une_loutre_comme_animal_de_compagnie_64_orig.jpg");
     background-attachment: fixed;
@@ -30,11 +40,19 @@ h2 {
     color: white;
 }
 
+#m-section-dashboard {
+    margin-top: 3%;
+}
+
 #m-section-emprunts {
     padding: 3% 15%;
     width: 100%;
     background-color: #9F7DE1;
     box-shadow: 10px 10px 5px #9F7DE166;
+}
+
+#carouselEmpruntsControls {
+    margin-top: 50px;
 }
 
 #m-section-emprunts h1 {

@@ -15,18 +15,50 @@
         <h1>{{ user.firstName }}</h1>
     </section>
 
-    <section id="m-section-dashboard">
+    <section id="m-section-dashboard" class="row d-lg-flex d-lg-row justify-content-around">
+
+        <div class="col-lg-4">
+            <section class="card my-anchor-card">
+                <div class="header my-anchor-card-header">
+                    <h2>Emprunts</h2>
+                </div>
+                <div class="body">
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <section class="card my-anchor-card">
+                <div class="header my-anchor-card-header">
+                    <h2>Prêts</h2>
+                </div>
+                <div class="body">
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <section class="card my-anchor-card">
+                <div class="header my-anchor-card-header">
+                    <h2>Autre</h2>
+                </div>
+                <div class="body">
+                </div>
+            </section>
+        </div>
+
     </section>
 
     <section id="m-section-emprunts">
         <h1>Tu as emprunté :</h1>
         <div id="carouselEmpruntsControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="http://placehold.it/350x150" class="d-block w-100" alt="...">
-                </div>
                 {% for borrowing in user.borrowed %}
-                    <div class="carousel-item">
+                    {% if loop.first %}
+                        <div class="carousel-item active">
+                    {% else %}
+                            <div class="carousel-item">
+                    {% endif %}
                         <section class="card my-borrow-card">
                             <div class="header bg-deep-purple">
                                 <h2>
