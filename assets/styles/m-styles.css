@@ -30,6 +30,7 @@ h2 {
 
 .carousel-control.right{
     background: #9F7DE100;
+    height: 250px;
 }
 
 .carousel-control.right:hover{
@@ -38,10 +39,30 @@ h2 {
 
 .carousel-control.left{
     background: #9F7DE100;
+    height: 250px;
 }
 
 .carousel-control.left:hover{
     background: #9F7DE100;
+}
+
+.m-btn{
+    margin: 5px;
+    padding: 0px 10px;
+    border: solid;
+    border-radius: 15%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.m-btn-purple {
+    color: #9F7DE1;
+    background-color: white;
+}
+
+.m-btn-white {
+    color: #9F7DE1;
+    background-color: #D3BCFF;
 }
 
 #m-section-titre {
@@ -54,6 +75,11 @@ h2 {
     background-position: center;
 }
 
+#m-section-titre h1 {
+    color: #6d41c3;
+}
+
+
 #m-section-titre h2 {
     color: white;
 }
@@ -65,18 +91,22 @@ h2 {
 #m-section-emprunts {
     padding-bottom: 3%;
     width: 100%;
+    border-radius: 5%;
     background-color: #9F7DE1;
     box-shadow: 10px 10px 5px #9F7DE166;
 }
 
 #m-section-emprunts h1 {
-    margin: 3%;
-}
-
-#carouselEmpruntsControls {
-    margin-top: 50px;
-}
-
-#m-section-emprunts h1 {
+    margin: 4%;
+    padding-top: 30px;
     color: white;
+}
+
+#MoreBorrowed {
+    margin-top: 5%;
+    padding: 0% 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
 }

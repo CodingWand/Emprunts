@@ -88,46 +88,11 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+                <div id="MoreBorrowed">
+                    <button type="button" class="m-btn m-btn-white">Rendre</button>
+                    <button type="button" class="m-btn m-btn-purple">Tout voir</button>
+                </div>
         </div>
-{#        <div id="carouselEmpruntsControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                {% for borrowing in user.borrowed %}
-                    {% if loop.first %}
-                        <div class="carousel-item active">
-                    {% else %}
-                            <div class="carousel-item">
-                    {% endif %}
-                        <section class="card my-borrow-card">
-                            <div class="header bg-deep-purple">
-                                <h2>
-                                    {{ borrowing.equipment.name }}
-                                    <small>A rendre le {{ borrowing.endedOn | date("d/m/Y") }}</small>
-                                </h2>
-                            </div>
-                            <div class="body">
-                                <p>Tu peux avoir {{ borrowing.allowedDays }} jours de retard.</p>
-                                <button type="button" class="btn bg-deep-purple">
-                                    <a href="#" style="color: white; text-decoration: none">Rendre</a>
-                                </button>
-                            </div>
-                            <div class="card-footer container">
-                                {% if borrowing.remarks != NULL %}
-                                    <span style="color: darkgray;">Remarque(s) : {{ borrowing.remarks }}</span>
-                                {% endif %}
-                            </div>
-                        </section>
-                    </div>
-                {% endfor %}
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselEmpruntsControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselEmpruntsControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>#}
     </section>
 
     <section class="m-section-pret">
