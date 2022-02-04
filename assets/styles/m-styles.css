@@ -13,6 +13,8 @@ h2 {
 
 .my-borrow-card {
     width: 50%;
+    height: 250px;
+    margin: auto;
     border: solid 5px;
 }
 
@@ -26,11 +28,27 @@ h2 {
     background-color: #D3BCFF;
 }
 
+.carousel-control.right{
+    background: #9F7DE100;
+}
+
+.carousel-control.right:hover{
+    background: #9F7DE100;
+}
+
+.carousel-control.left{
+    background: #9F7DE100;
+}
+
+.carousel-control.left:hover{
+    background: #9F7DE100;
+}
+
 #m-section-titre {
     padding: 10%;
     height: 300px;
     text-align: right;
-    background-image: url("https://t2.ev.ltmcdn.com/fr/posts/4/6/0/peut_on_avoir_une_loutre_comme_animal_de_compagnie_64_orig.jpg");
+    background-image: url("https://cdn.radiofrance.fr/s3/cruiser-production/2020/10/62976369-dba8-4aea-b7da-b7f8a7b88ddd/1200x680_23_10_20_loutre_alan_tunnicliffe_photography_gettyimages-1058052742.jpg");/*url("https://t2.ev.ltmcdn.com/fr/posts/4/6/0/peut_on_avoir_une_loutre_comme_animal_de_compagnie_64_orig.jpg");*/
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -45,10 +63,14 @@ h2 {
 }
 
 #m-section-emprunts {
-    padding: 3% 15%;
+    padding-bottom: 3%;
     width: 100%;
     background-color: #9F7DE1;
     box-shadow: 10px 10px 5px #9F7DE166;
+}
+
+#m-section-emprunts h1 {
+    margin: 3%;
 }
 
 #carouselEmpruntsControls {

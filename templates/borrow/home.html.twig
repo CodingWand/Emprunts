@@ -3,7 +3,7 @@
 {% block titre_page %}Emprunts{% endblock %}
 
 {% block page_css %}
-    <link rel="stylesheet" href="{{ asset('build/m-styles.css') }}" />
+{#    <link rel="stylesheet" href="{{ asset('build/m-styles.css') }}" />#}
 {% endblock %}
 
 {% block additionnal_body_class %}my-content{% endblock %}
@@ -15,9 +15,9 @@
         <h1>{{ user.firstName }}</h1>
     </section>
 
-    <section id="m-section-dashboard" class="row d-lg-flex d-lg-row justify-content-around">
+    <section id="m-section-dashboard" class="row d-sm-flex d-sm-row justify-content-around">
 
-        <div class="col-lg-4">
+        <div class="col-sm-4">
             <section class="card my-anchor-card">
                 <div class="header my-anchor-card-header">
                     <h2>Emprunts</h2>
@@ -27,7 +27,7 @@
             </section>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-sm-4">
             <section class="card my-anchor-card">
                 <div class="header my-anchor-card-header">
                     <h2>Prêts</h2>
@@ -37,7 +37,7 @@
             </section>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-sm-4">
             <section class="card my-anchor-card">
                 <div class="header my-anchor-card-header">
                     <h2>Autre</h2>
@@ -46,12 +46,50 @@
                 </div>
             </section>
         </div>
-
     </section>
 
     <section id="m-section-emprunts">
-        <h1>Tu as emprunté :</h1>
-        <div id="carouselEmpruntsControls" class="carousel slide" data-bs-ride="carousel">
+        <h1>Tu as emprunté</h1>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                {% for borrowing in user.borrowed %}
+                {% if loop.first %}
+                <div class="item active">
+                    {% else %}
+                    <div class="item">
+                        {% endif %}
+                        <section class="card my-borrow-card">
+                            <div class="header bg-deep-purple">
+                                <h2>
+                                    {{ borrowing.equipment.name }}
+                                    <small>A rendre le {{ borrowing.endedOn | date("d/m/Y") }}</small>
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <p>Tu peux avoir {{ borrowing.allowedDays }} jours de retard.</p>
+                                <button type="button" class="btn bg-deep-purple">
+                                    <a href="#" style="color: white; text-decoration: none">Rendre</a>
+                                </button>
+                            </div>
+                            <div class="card-footer container">
+                                {% if borrowing.remarks != NULL %}
+                                    <span style="color: darkgray;">Remarque(s) : {{ borrowing.remarks }}</span>
+                                {% endif %}
+                            </div>
+                        </section>
+                    </div>
+                    {% endfor %}
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+{#        <div id="carouselEmpruntsControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 {% for borrowing in user.borrowed %}
                     {% if loop.first %}
@@ -89,7 +127,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
+        </div>#}
     </section>
 
     <section class="m-section-pret">
