@@ -72,7 +72,8 @@ h2 {
     background-image: url("https://cdn.radiofrance.fr/s3/cruiser-production/2020/10/62976369-dba8-4aea-b7da-b7f8a7b88ddd/1200x680_23_10_20_loutre_alan_tunnicliffe_photography_gettyimages-1058052742.jpg");/*url("https://t2.ev.ltmcdn.com/fr/posts/4/6/0/peut_on_avoir_une_loutre_comme_animal_de_compagnie_64_orig.jpg");*/
     background-attachment: fixed;
     background-size: cover;
-    background-position: center;
+    background-repeat: no-repeat;
+    background-position: top;
 }
 
 #m-section-titre h1 {
@@ -109,4 +110,39 @@ h2 {
     flex-direction: row;
     justify-content: end;
     align-items: center;
+}
+
+@media (max-width: 800px) {
+    #m-section-titre {
+        background: #2b542c; /* Temporaire */
+    }
+}
+
+@media (max-width: 600px) {
+    .my-borrow-card {
+        height: 200px;
+        font-size: 15px;
+    }
+
+    #m-section-emprunts {
+
+    }
+}
+
+@media (max-width: 410px) {
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    #m-section-titre {
+        text-align: center;
+    }
+
+    #m-section-titre h1 {
+        font-size: 50px;
+    }
 }
